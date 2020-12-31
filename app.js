@@ -8,20 +8,26 @@ button.addEventListener('click', function(){
 })
 
 function getRandomJoke(){
-    const ajax = new XMLHttpRequest;
+    /*
+        const ajax = new XMLHttpRequest;
 
-    ajax.open('GET', 'https://api.chucknorris.io/jokes/random', true);
+        ajax.open('GET', 'https://api.chucknorris.io/jokes/random', true);
 
-    ajax.onreadystatechange = function(){
-        if(this.status === 200 && this.readyState === 4){
-            console.log(this.responseText);
-            let data = JSON.parse(this.responseText);
-            jokeDIV.innerHTML = `${data.value}`
-        } else {
-            this.onerror = onerror();
+        ajax.onreadystatechange = function(){
+            if(this.status === 200 && this.readyState === 4){
+                console.log(this.responseText);
+                let data = JSON.parse(this.responseText);
+                jokeDIV.innerHTML = `${data.value}`
+            } else {
+                this.onerror = onerror();
+            }
         }
-    }
-    ajax.send();
+        ajax.send();
+    */
+
+    fetch('https://api.chucknorris.io/jokes/random')
+        .then(response => response.json())
+        .then(data => jokeDIV.innerHTML = data.value);
 }
 
 function onerror(){
